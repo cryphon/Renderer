@@ -17,6 +17,8 @@ int main(void) {
     SDL_Window* window = create_window("Three body problem", WIDTH, HEIGHT);
     SDL_Renderer* renderer = create_renderer(window);
 
+
+    Body planet(5.972e24, Vec3(50.0, 100.0, 0.0), Vec3(50.0, 1.3, 1.0));
     while(true) {
         SDL_Event event;
         if(SDL_PollEvent(&event)) {
@@ -25,13 +27,15 @@ int main(void) {
             }
         }
 
-        Uint8 red = rand() % 255;
-        Uint8 green = rand() % 255;
-        Uint8 blue = rand() %255;
+        Uint8 red = 255;
+        Uint8 green = 255;
+        Uint8 blue = 255;
 
         SDL_SetRenderDrawColor(renderer, red, green, blue, 255);
         SDL_RenderClear(renderer);
 
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        render_body(renderer, planet, 20);
         SDL_RenderPresent(renderer);
         sleep(1);
     }
