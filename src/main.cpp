@@ -19,11 +19,25 @@ int main(void) {
 
 
     Body planet(5.972e24, Vec3(50.0, 100.0, 0.0), Vec3(50.0, 1.3, 1.0));
-    while(true) {
-        SDL_Event event;
-        if(SDL_PollEvent(&event)) {
+
+
+    bool is_running = true;
+    SDL_Event event;
+    while(is_running) {
+        while(SDL_PollEvent(&event)) {
             if(event.type == SDL_QUIT) {
+                is_running = false;
                 break;
+            }
+            // Handle keypresses
+            if (event.type == SDL_KEYDOWN) {
+                switch (event.key.keysym.sym) {
+                    case SDLK_ESCAPE:  // Press ESC to close the window
+                        is_running = false;
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
