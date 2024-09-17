@@ -25,6 +25,7 @@ set(SOURCES
     src/vec3.cpp
     src/body.cpp
     src/renderer.cpp
+    src/collision.cpp
 )
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
