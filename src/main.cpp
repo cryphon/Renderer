@@ -14,6 +14,13 @@ const int FRAME_RATE = 60;
 const int FRAME_DELAY = 1000 / FRAME_RATE;
 
 
+float random_float(float a, float b) {
+    float random = ((float) rand()) / (float) RAND_MAX;
+    float diff = b - a;
+    float r = random * diff;
+    return a + r;
+}
+
 int main(void) {
 
     // Window to be rendered to
@@ -24,11 +31,15 @@ int main(void) {
     SDL_RenderClear(renderer);
 
 
-    Body planet(5.972e24, Vec3(WIDTH / 2, HEIGHT / 2, 0.0), Vec3(10.0, 0, 0.0));
+    Body planet1(5.972e24, Vec3(random_float(0, WIDTH), random_float(0, HEIGHT), 0.0), Vec3(random_float(0, 10), random_float(0, 10), 0.0));
+    Body planet2(5.972e24, Vec3(random_float(0, WIDTH), random_float(0, HEIGHT), 0.0), Vec3(random_float(0, 10), random_float(0, 10), 0.0));
+    Body planet3(5.972e24, Vec3(random_float(0, WIDTH), random_float(0, HEIGHT), 0.0), Vec3(random_float(0, 10), random_float(0, 10), 0.0));
 
     // Create sphere
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    render_body(renderer, planet, 20);
+    render_body(renderer, planet1, 20);
+    render_body(renderer, planet2, 20);
+    render_body(renderer, planet3, 20);
 
 
     bool is_running = true;
@@ -59,10 +70,16 @@ int main(void) {
         SDL_RenderClear(renderer);
 
         // Re-render object
-        planet.update_pos(1.0);
-        check_collision(planet, WIDTH, HEIGHT, 40, 40);
+        planet1.update_pos(1.0);
+        planet2.update_pos(1.0);
+        planet3.update_pos(1.0);
+        check_collision(planet1, WIDTH, HEIGHT, 20, 20);
+        check_collision(planet2, WIDTH, HEIGHT, 20, 20);
+        check_collision(planet3, WIDTH, HEIGHT, 20, 20);
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-        render_body(renderer, planet, 20);
+        render_body(renderer, planet1, 20);
+        render_body(renderer, planet2, 20);
+        render_body(renderer, planet3, 20);
         SDL_RenderPresent(renderer);
 
 
