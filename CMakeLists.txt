@@ -3,12 +3,25 @@ project(ThreeBodySimulation)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
+# DEBUG
+#set(CMAKE_VERBOSE_MAKEFILE ON)
+
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
+
+
+# Add custom packages
+set(SDL2_TTF_LIBRARIES "/usr/lib/libSDL2_ttf.so")  # Adjust the path to your system
+
+
 
 # Find SDL2 package
 find_package(SDL2 REQUIRED)
 include_directories(${SDL2_INCLUDE_DIRS})
+
+# Find SDL2_ttf package
+find_package(SDL2_ttf REQUIRED)
+include_directories(${SDL_TTF_INCLUDE_DIRS})
 
 # Find OpenGL
 find_package(OpenGL REQUIRED)
@@ -36,6 +49,7 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 # Link libs
 target_link_libraries(${PROJECT_NAME}
     ${SDL2_LIBRARIES}
+    ${SDL2_TTF_LIBRARIES}
     ${OPENGL_LIBRARIES}
     ${GLEW_LIBRARIES}
 )

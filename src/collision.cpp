@@ -27,7 +27,7 @@ void check_collision(Body& body, int window_width, int window_height, int object
     // Bottom bound
     if(pos.y + object_height >= window_height) {
         pos.y = window_height - object_height;
-        vel.y = -vel.y;
+        vel.y = -vel.y * 0.8;
     }
 
     body.set_pos(pos);

@@ -4,6 +4,8 @@
 #include "body.hpp"
 #include <SDL.h>
 #include <unistd.h>
+#include <GL/gl.h>
+#include <iostream>
 
 
 SDL_Renderer* create_renderer(SDL_Window* window) {
@@ -80,10 +82,25 @@ void draw_circle(SDL_Renderer* renderer, int32_t centreX, int32_t centreY, int32
     }
 }
 
+// Render a filled circle in OpenGL
+void drawFilledCircleGL(float cx, float cy, float r, int num_segments) {
+    glColor3f(0.0f, 0.0f, 0.0f);  // Set color to black
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex2f(cx, cy);  // Center of the circle
+    for (int i = 0; i <= num_segments; i++) {
+        float theta = 2.0f * 3.1415926f * float(i) / float(num_segments);  // Current angle
+        float x = r * cosf(theta);  // X component
+        float y = r * sinf(theta);  // Y component
+        glVertex2f(x + cx, y + cy);  // Position vertex
+    }
+    printf("cx: %f, cy: %f, r: %f, segments: %d\n", cx, cy, r, num_segments);
+    glEnd();
+}
 
 void render_body(SDL_Renderer* renderer, Body body, int radius) {
     Vec3 pos = body.get_pos();
-    draw_circle(renderer, pos[0], pos[1], radius);
+    // draw_circle(renderer, pos[0], pos[1], radius);
+    drawFilledCircleGL(pos.x, pos.y, radius, 50);
 }
 
 
