@@ -48,8 +48,12 @@ int main(void) {
     glLoadIdentity();
 
     // Create body
-    Body planet1(5.972e24, Vec3(WIDTH / 2, HEIGHT / 2, 0), Vec3(0.0, 30.0, 0.0), 20, 20);
+    Body planet1(5.972e24, Vec3(random_float(0.0, WIDTH), HEIGHT / 2 + random_float(0.0, 100.0), 0), Vec3(random_float(0.0, 15.0), 0.0, 0.0), 20, 20);
+    Body planet2(5.972e24, Vec3(random_float(0.0, WIDTH), HEIGHT / 2 + random_float(0.0, 100.0), 0), Vec3(random_float(0.0, 15.0), 0.0, 0.0), 20, 20);
+    Body planet3(5.972e24, Vec3(random_float(0.0, WIDTH), HEIGHT / 2 + random_float(0.0, 100.0), 0), Vec3(random_float(0.0, 15.0), 0.0, 0.0), 20, 20);
     planet1.set_gravity(gravity);
+    planet2.set_gravity(gravity);
+    planet3.set_gravity(gravity);
 
     bool is_running = true;
     SDL_Event event;
@@ -75,10 +79,17 @@ int main(void) {
 
         // Update the position of the planet
         planet1.update_pos(delta_time);
+        planet2.update_pos(delta_time);
+        planet3.update_pos(delta_time);
+
         check_collision(planet1, WIDTH, HEIGHT, 20, 20);
+        check_collision(planet2, WIDTH, HEIGHT, 20, 20);
+        check_collision(planet3, WIDTH, HEIGHT, 20, 20);
 
         // Render the planet using OpenGL
         render_body(renderer, planet1, 20);
+        render_body(renderer, planet2, 20);
+        render_body(renderer, planet3, 20);
 
         // Swap OpenGL buffers to display the result
         SDL_GL_SwapWindow(window);
