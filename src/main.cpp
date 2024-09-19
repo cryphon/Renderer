@@ -87,9 +87,9 @@ int main(void) {
         check_collision(planet3, WIDTH, HEIGHT, 20, 20);
 
         // Render the planet using OpenGL
-        render_body(renderer, planet1, 20);
-        render_body(renderer, planet2, 20);
-        render_body(renderer, planet3, 20);
+        render_body(planet1);
+        render_body(planet2);
+        render_body(planet3);
 
         // Swap OpenGL buffers to display the result
         SDL_GL_SwapWindow(window);

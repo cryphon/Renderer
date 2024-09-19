@@ -9,7 +9,7 @@
 
 SDL_Renderer* create_renderer(SDL_Window* window);
 SDL_Window* create_window(char* window_name, int width = STANDARD_WIDTH, int height = STANDARD_HEIGHT);
-void render_body(SDL_Renderer* renderer, Body body, int radius);
+void render_body(Body body);
 int clean(SDL_Window* window, SDL_Renderer* renderer);
 
 
