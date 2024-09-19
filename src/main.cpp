@@ -13,7 +13,7 @@
 #define HEIGHT 600
 const int FRAME_RATE = 60;
 const int FRAME_DELAY = 1000 / FRAME_RATE;
-float gravity = 19.8f;  // Gravity value
+float gravity = 9.8f;  // Gravity value
 
 float random_float(float a, float b) {
     float random = ((float) rand()) / (float) RAND_MAX;
@@ -48,9 +48,9 @@ int main(void) {
     glLoadIdentity();
 
     // Create body
-    Body planet1(5.972e24, Vec3(random_float(0.0, WIDTH), HEIGHT / 2 + random_float(0.0, 100.0), 0), Vec3(random_float(0.0, 15.0), 0.0, 0.0), 20, 20);
-    Body planet2(5.972e24, Vec3(random_float(0.0, WIDTH), HEIGHT / 2 + random_float(0.0, 100.0), 0), Vec3(random_float(0.0, 15.0), 0.0, 0.0), 20, 20);
-    Body planet3(5.972e24, Vec3(random_float(0.0, WIDTH), HEIGHT / 2 + random_float(0.0, 100.0), 0), Vec3(random_float(0.0, 15.0), 0.0, 0.0), 20, 20);
+    Body planet1(5.972e24, Vec3(random_float(0.0, WIDTH), HEIGHT / 2 + random_float(0.0, -200.0), 0), Vec3(random_float(0.0, 15.0), 0.0, 0.0), 50, 20);
+    Body planet2(5.972e24, Vec3(random_float(0.0, WIDTH), HEIGHT / 2 + random_float(0.0, -400.0), 0), Vec3(random_float(0.0, 15.0), 0.0, 0.0), 50, 20);
+    Body planet3(5.972e24, Vec3(random_float(0.0, WIDTH), HEIGHT / 2 + random_float(0.0, -300.0), 0), Vec3(random_float(0.0, 15.0), 0.0, 0.0), 50, 20);
     planet1.set_gravity(gravity);
     planet2.set_gravity(gravity);
     planet3.set_gravity(gravity);
@@ -62,7 +62,7 @@ int main(void) {
     while (is_running) {
         Uint32 frame_start = SDL_GetTicks();
         Uint32 current_frame_time = SDL_GetTicks();
-        float time_scale = 4.0f;
+        float time_scale = 6.0f;
         float delta_time = (current_frame_time - last_frame_time) / 1000.0f * time_scale;
         last_frame_time = current_frame_time;
 

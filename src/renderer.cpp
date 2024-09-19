@@ -100,7 +100,7 @@ void drawFilledCircleGL(float cx, float cy, float r, int num_segments) {
 void render_body(SDL_Renderer* renderer, Body body, int radius) {
     Vec3 pos = body.get_pos();
     // draw_circle(renderer, pos[0], pos[1], radius);
-    drawFilledCircleGL(pos.x, pos.y, radius, 50);
+    drawFilledCircleGL(pos.x, pos.y, body.width / 2, 50);
 }
 
 
