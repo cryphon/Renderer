@@ -33,6 +33,9 @@ class Vec3 {
         // Scalar multiplication
         Vec3 mul(float scalar) const;
 
+        // Scakar divide
+        Vec3 div(float scalar) const;
+
         // Dot product
         float dot(const Vec3& other) const;
 
@@ -44,6 +47,9 @@ class Vec3 {
 
         // Normalize the vector
         Vec3 normalize() const;
+
+        // Length
+        float length() const;
 
         // Print
         void print() const;

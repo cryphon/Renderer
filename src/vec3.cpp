@@ -18,6 +18,10 @@ Vec3 Vec3::mul(float scalar) const {
     return Vec3(x * scalar, y * scalar, z * scalar);
 }
 
+Vec3 Vec3::div(float scalar) const {
+    return Vec3(x / scalar, y / scalar, z / scalar);
+}
+
 float Vec3::dot(const Vec3& other) const {
     return x * other.x + y * other.y + z * other.z;
 }
@@ -38,8 +42,16 @@ float Vec3::magnitude() const {
 // Normalize vector
 Vec3 Vec3::normalize() const {
     float mag = magnitude();
+    if(mag == 0) {
+        std::cout << "Warning: Trying to normalize a zero vector!" << std::endl;
+        return Vec3(0, 0, 0);
+    }
     return Vec3(x / mag, y / mag, z / mag);
 }
+
+float Vec3::length() const {
+        return std::sqrt(x * x + y * y + z * z);
+    }
 
 void Vec3::print() const {
     std::cout << "(" << x << ", " << y << ", " << z << ")\n";

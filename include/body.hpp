@@ -2,7 +2,7 @@
 #define BODY_HPP
 
 #include "vec3.hpp"
-
+#include <vector>
 class Body {
     public:
         int width, height;
@@ -11,11 +11,13 @@ class Body {
         double get_mass() const;
         const Vec3& get_pos() const;
         const Vec3& get_velocity() const;
+        float get_gravity() const;
 
         void set_pos(const Vec3& pos);
         void set_velocity(const Vec3& velocity);
-        void set_gravity(const float gravity = NULL);
-
+        const void set_gravity(const float gravity = NULL);
+        
+        void apply_attraction_force(Vec3 sun_pos, float sun_mass, float dt);
         void update_pos(double dt);
 
     private:
